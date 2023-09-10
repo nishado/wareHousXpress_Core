@@ -13,13 +13,13 @@ public class UsersMapper {
 
         UsersDto usersDto = new UsersDto();
         usersDto.setId(users.getId());
-        usersDto.setUserCd(users.getUserCd());
+        usersDto.setUserCd(users.getUserCode());
         usersDto.setPassword(users.getPassword());
-        usersDto.setName(users.getName());
+        usersDto.setName(users.getUsername());
         usersDto.setEditBy(users.getEditBy());
         usersDto.setEditDt(users.getEditDt());
         usersDto.setCreateBy(users.getCreateBy());
-        usersDto.setCreateDate(users.getCreatDate());
+        usersDto.setCreateDate(users.getCreateDate());
         usersDto.setEmpCode(users.getEmpCode());
 
         return usersDto;
@@ -33,13 +33,13 @@ public class UsersMapper {
 
         Users users = new Users();
         users.setId(usersDto.getId());
-        users.setUserCd(usersDto.getUserCd());
+        users.setUserCode(usersDto.getUserCd());
         users.setPassword(usersDto.getPassword());
-        users.setName(usersDto.getName());
+        users.setUsername(usersDto.getName());
         users.setEditBy(usersDto.getEditBy());
         users.setEditDt(usersDto.getEditDt());
         users.setCreateBy(usersDto.getCreateBy());
-        users.setCreatDate(usersDto.getCreateDate());
+        users.setCreateDate(usersDto.getCreateDate());
         users.setEmpCode(usersDto.getEmpCode());
 
         return users;

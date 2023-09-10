@@ -1,6 +1,8 @@
 package com.project.warehouse.express.entity;
 
 import jakarta.persistence.*;
+import org.apache.catalina.User;
+
 import java.util.Date;
 
 @Entity
@@ -11,14 +13,18 @@ public class UserScreen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_id", nullable = false)
-    private short userId;
-
-    @OneToOne(mappedBy = "userScreen")
-    private Users users;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_code", nullable = false)
+    private Users user;
 
     @Column(name = "dashboard", nullable = false)
     private boolean dashboard;
+
+    @Column(name = "stock", nullable = false)
+    private boolean stock;
+
+    @Column(name = "sales", nullable = false)
+    private boolean sales;
 
     @Column(name = "employees", nullable = false)
     private boolean employees;
@@ -55,6 +61,7 @@ public class UserScreen {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
+
     // Getter and Setter methods
 
     public int getId() {
@@ -65,12 +72,12 @@ public class UserScreen {
         this.id = id;
     }
 
-    public short getUserId() {
-        return userId;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUserId(short userId) {
-        this.userId = userId;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public boolean isDashboard() {

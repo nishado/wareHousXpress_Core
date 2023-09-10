@@ -22,9 +22,9 @@ public class UserService {
         this.userScreenRepository = userScreenRepository;
     }
 
-    public List<UserScreen> authorizeUser(String userName, String password) {
+    public List<UserScreen> authorizeUser(String username, String password) {
         List<UserScreen> screens = new ArrayList<>();
-        Users user = usersRepository.findByUserNameAndPassword(userName, password);
+        Users user = usersRepository.findByUsernameAndPassword(username, password);
         if (user != null) {
             screens = userScreenRepository.findAll(); //
         }

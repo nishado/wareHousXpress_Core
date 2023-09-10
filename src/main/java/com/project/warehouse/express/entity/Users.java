@@ -21,38 +21,32 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-    @Column(name = "user_Code", nullable = false)
-    private short userCd;
-
-    @OneToOne
-    @JoinColumn(name = "user_code", referencedColumnName = "user_id", insertable = false, updatable = false)
-    private UserScreen userScreen;
+    @Column(name = "user_code", nullable = false, unique = true)
+    private int userCode;
 
     @Column(name = "password", nullable = false, length = 20)
     private String password;
 
     @Column(name = "user_name", length = 50, nullable = false)
-    private String userName;
+    private String username;
 
-    @Column(name = "edit_by", length = 20, nullable = true)
+    @Column(name = "edit_by", length = 20)
     private String editBy;
 
     @Column(name = "edit_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date editDt;
 
-    @Column(name = "create_by", length = 20, nullable = true)
+    @Column(name = "create_by", length = 20)
     private String createBy;
 
-    @Column(name = "create_Date", nullable = false)
+    @Column(name = "create_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
     @Column(name = "emp_code", length = 20, nullable = false)
     private String empCode;
 
-    // Getter and Setter methods
 
     public int getId() {
         return id;
@@ -62,13 +56,11 @@ public class Users {
         this.id = id;
     }
 
-    public short getUserCd() {
-        return userCd;
+    public int getUserCode() {
+        return userCode;
     }
 
-    public void setUserCd(short userCd) {
-        this.userCd = userCd;
-    }
+    public void setUserCode(int userCode) {this.userCode = userCode; }
 
     public String getPassword() {
         return password;
@@ -78,13 +70,9 @@ public class Users {
         this.password = password;
     }
 
-    public String getName() {
-        return userName;
-    }
+    public String getUsername() { return username; }
 
-    public void setName(String userName) {
-        this.userName = Users.this.userName;
-    }
+    public void setUsername(String username) { this.username = username; }
 
     public String getEditBy() {
         return editBy;
@@ -110,13 +98,11 @@ public class Users {
         this.createBy = createBy;
     }
 
-    public Date getCreatDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreatDate(Date creatDate) {
-        this.createDate = creatDate;
-    }
+    public void setCreateDate(Date createDate) { this.createDate = createDate; }
 
     public String getEmpCode() {
         return empCode;

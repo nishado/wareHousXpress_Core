@@ -26,13 +26,12 @@ public class UserController {
 
     @GetMapping(
             value = "/authorizeUser",
-            produces = "application/json",
-            consumes = "application/json"
+            produces = "application/json"
     )
     public List<UserScreen> authorizeUser(
-            @RequestParam String userName,
+            @RequestParam String username,
             @RequestParam String password
     ) {
-        return userService.authorizeUser(userName, password);
+        return userService.authorizeUser(username, password);
     }
 }

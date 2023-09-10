@@ -5,7 +5,7 @@ import java.util.Date;
 public class UsersDto {
 
     private int id;
-    private short userCd;
+    private int userCd;
     private String password;
     private String name;
     private String editBy;
@@ -37,11 +37,11 @@ public class UsersDto {
         this.id = id;
     }
 
-    public short getUserCd() {
+    public int getUserCd() {
         return userCd;
     }
 
-    public void setUserCd(short userCd) {
+    public void setUserCd(int userCd) {
         this.userCd = userCd;
     }
 
