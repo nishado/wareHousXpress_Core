@@ -1,7 +1,6 @@
 package com.project.warehouse.express.entity;
 
 import jakarta.persistence.*;
-import org.apache.catalina.User;
 
 import java.util.Date;
 
@@ -175,4 +174,13 @@ public class UserScreen {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    public boolean isStock() { return stock; }
+
+    public void setStock(boolean stock) { this.stock = stock; }
+
+    public boolean isSales() { return sales; }
+
+    public void setSales(boolean sales) { this.sales = sales; }
+
 }
