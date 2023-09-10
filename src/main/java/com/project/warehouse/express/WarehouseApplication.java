@@ -10,4 +10,6 @@ public class WarehouseApplication {
 		SpringApplication.run(WarehouseApplication.class, args);
 	}
 
+	//commit check
+
 }
