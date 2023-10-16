@@ -1,7 +1,7 @@
 package com.project.warehouse.express.service.ServiceImplimentations;
 
-import com.project.warehouse.express.entity.Stocks;
-import com.project.warehouse.express.repository.StocksRepository;
+import com.project.warehouse.express.entity.Stock;
+import com.project.warehouse.express.repository.StockRepository;
 import com.project.warehouse.express.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,30 +10,30 @@ import java.util.List;
 
 @Service
 public class StocksServiceImpl implements StockService {
-    private final StocksRepository stockRepository;
+    private final StockRepository stockRepository;
 
     @Autowired
-    public StocksServiceImpl(StocksRepository stockRepository) {
+    public StocksServiceImpl(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
 
     @Override
-    public Stocks create(Stocks entity) {
+    public Stock create(Stock entity) {
         return stockRepository.save(entity);
     }
 
     @Override
-    public Stocks findById(Long id) {
+    public Stock findById(Long id) {
         return stockRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Stocks> findAll() {
+    public List<Stock> findAll() {
         return stockRepository.findAll();
     }
 
     @Override
-    public Stocks update(Stocks entity) {
+    public Stock update(Stock entity) {
         return stockRepository.save(entity);
     }
 

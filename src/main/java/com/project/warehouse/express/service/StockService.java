@@ -1,7 +1,7 @@
 package com.project.warehouse.express.service;
 
-import com.project.warehouse.express.entity.Stocks;
+import com.project.warehouse.express.entity.Stock;
 
-public interface StockService extends CrudServices<Stocks, Long> {
-    Stocks create(Stocks entity);
+public interface StockService extends CrudServices<Stock, Long> {
+    Stock create(Stock entity);
 }
