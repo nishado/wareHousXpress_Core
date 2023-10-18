@@ -40,8 +40,8 @@ public class UserScreen {
     @Column(name = "leave_salary", nullable = false)
     private boolean leaveSalary;
 
-    @Column(name = "clients", nullable = false)
-    private boolean clients;
+    @Column(name = "customers", nullable = false)
+    private boolean customers;
 
     @Column(name = "gratuity", nullable = false)
     private boolean gratuity;
@@ -127,12 +127,12 @@ public class UserScreen {
         this.leaveSalary = leaveSalary;
     }
 
-    public boolean isClients() {
-        return clients;
+    public boolean isCustomers() {
+        return customers;
     }
 
-    public void setClients(boolean clients) {
-        this.clients = clients;
+    public void setCustomers(boolean customers) {
+        this.customers = customers;
     }
 
     public boolean isGratuity() {

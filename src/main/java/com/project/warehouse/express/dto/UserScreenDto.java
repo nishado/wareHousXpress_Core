@@ -12,7 +12,7 @@ public class UserScreenDto {
     private boolean dashboard;
     private boolean stock;
     private boolean sales;
-    private boolean clients;
+    private boolean customers;
     private boolean employees;
     private boolean attendance;
     private boolean salaryMaster;
@@ -92,12 +92,12 @@ public class UserScreenDto {
         this.sales = sales;
     }
 
-    public boolean isClients() {
-        return clients;
+    public boolean isCustomers() {
+        return customers;
     }
 
-    public void setClients(boolean clients) {
-        this.clients = clients;
+    public void setCustomers(boolean customers) {
+        this.customers = customers;
     }
 
     public boolean isEmployees() {

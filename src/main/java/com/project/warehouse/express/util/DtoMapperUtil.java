@@ -18,7 +18,7 @@ public class DtoMapperUtil {
         dto.setDashboard(screen.isDashboard());
         dto.setStock(screen.isStock());
         dto.setSales(screen.isSales());
-        dto.setClients(screen.isClients());
+        dto.setCustomers(screen.isCustomers());
         dto.setEmployees(screen.isEmployees());
         dto.setAttendance(screen.isAttendance());
         dto.setSalaryMaster(screen.isSalaryMaster());
