@@ -2,9 +2,9 @@ package com.project.warehouse.express.service;
 
 import com.project.warehouse.express.dto.UserScreenDto;
 import com.project.warehouse.express.entity.Users;
-import com.project.warehouse.express.entity.UserScreen;
+import com.project.warehouse.express.entity.UserScreens;
 import com.project.warehouse.express.repository.UsersRepository;
-import com.project.warehouse.express.repository.UserScreenRepository;
+import com.project.warehouse.express.repository.UserScreensRepository;
 import com.project.warehouse.express.util.DtoMapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +16,19 @@ import java.util.List;
 public class UserService {
 
     private final UsersRepository usersRepository;
-    private final UserScreenRepository userScreenRepository;
+    private final UserScreensRepository userScreensRepository;
 
     @Autowired
-    public UserService(UsersRepository usersRepository, UserScreenRepository userScreenRepository) {
+    public UserService(UsersRepository usersRepository, UserScreensRepository userScreensRepository) {
         this.usersRepository = usersRepository;
-        this.userScreenRepository = userScreenRepository;
+        this.userScreensRepository = userScreensRepository;
     }
 
     public List<UserScreenDto> authorizeUser(String username, String password) {
         List<UserScreenDto> dtoList = new ArrayList<>();
         Users user = usersRepository.findByUsernameAndPassword(username, password);
         if (user != null) {
-            List<UserScreen> screens = userScreenRepository.findByUser(user);
+            List<UserScreens> screens = userScreensRepository.findByUser(user);
             UserScreenDto dto = DtoMapperUtil.mapUserScreenDto(screens.get(0));
             dtoList.add(dto);
         }

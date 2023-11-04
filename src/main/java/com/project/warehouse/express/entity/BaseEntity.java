@@ -12,22 +12,23 @@ import java.util.Date;
 
 @MappedSuperclass
 public abstract class BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "create_by", length = 20)
-    private String createBy;
+    @Column(name = "create_by", nullable = false)
+    private Long createBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false)
     private Date createDate;
 
-    @Column(name = "edit_by", length = 20)
-    private String editBy;
+    @Column(name = "edit_by", nullable = false)
+    private Long editBy;
 
-    @Column(name = "edit_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date editDt;
+    @Column(name = "edit_date", nullable = false)
+    private Date editDate;
 
 }

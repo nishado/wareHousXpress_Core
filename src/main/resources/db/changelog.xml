@@ -3,11 +3,6 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
-    <changeSet id="1" author="mubaris">
-        <createTable tableName="liquibase_sample_table2">
-            <column name="col_A" type="int" />
-        </createTable>
-    </changeSet>
     <changeSet id="init_superman" author="mubaris">
         <sqlFile path="db/changesets/01_initialize_superman.sql"/>
     </changeSet>

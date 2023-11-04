@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class UsersDto {
 
-    private int id;
+    private long id;
     private int userCd;
     private String password;
     private String name;
@@ -29,11 +29,11 @@ public class UsersDto {
         this.empCode = empCode;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

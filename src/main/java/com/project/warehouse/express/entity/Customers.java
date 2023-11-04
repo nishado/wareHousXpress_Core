@@ -11,16 +11,23 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "customers")
-public class Customers extends BaseEntity{
+public class Customers extends BaseEntity {
 
     @Column(name = "code", nullable = false, unique = true, length = 30)
     private String code;
+
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "trn", nullable = false, length = 50)
+    private String trn;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "phone_1")
     private String phone1;
+
     @Column(name = "phone_2")
     private String phone2;
 

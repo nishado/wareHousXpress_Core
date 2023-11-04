@@ -1,11 +1,11 @@
 package com.project.warehouse.express.util;
 
 import com.project.warehouse.express.dto.UserScreenDto;
-import com.project.warehouse.express.entity.UserScreen;
+import com.project.warehouse.express.entity.UserScreens;
 
 public class DtoMapperUtil {
 
-    public static UserScreenDto mapUserScreenDto(UserScreen screen) {
+    public static UserScreenDto mapUserScreenDto(UserScreens screen) {
         UserScreenDto dto = new UserScreenDto();
         if (screen.getId() > 0) {
             dto.setId(screen.getId());
