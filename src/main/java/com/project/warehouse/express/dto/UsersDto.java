@@ -1,7 +1,12 @@
 package com.project.warehouse.express.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class UsersDto {
 
     private long id;
@@ -26,78 +31,6 @@ public class UsersDto {
         this.editDt = editDt;
         this.createBy = createBy;
         this.createDate = createDate;
-        this.empCode = empCode;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getUserCd() {
-        return userCd;
-    }
-
-    public void setUserCd(int userCd) {
-        this.userCd = userCd;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEditBy() {
-        return editBy;
-    }
-
-    public void setEditBy(String editBy) {
-        this.editBy = editBy;
-    }
-
-    public Date getEditDt() {
-        return editDt;
-    }
-
-    public void setEditDt(Date editDt) {
-        this.editDt = editDt;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getEmpCode() {
-        return empCode;
-    }
-
-    public void setEmpCode(String empCode) {
         this.empCode = empCode;
     }
 }
