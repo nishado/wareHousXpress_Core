@@ -9,6 +9,7 @@ import java.util.Date;
 @Setter
 
 public class UserScreenDto {
+
     private long id;
     private long userId;
     private Long editBy;
@@ -25,4 +26,5 @@ public class UserScreenDto {
     private boolean salaryPayout;
     private boolean leaveSalary;
     private boolean gratuity;
+
 }

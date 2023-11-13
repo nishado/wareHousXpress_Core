@@ -1,12 +1,10 @@
 package com.project.warehouse.express.controller;
 
 import com.project.warehouse.express.dto.EmployeesDto;
+import com.project.warehouse.express.dto.UserScreenDto;
 import com.project.warehouse.express.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,13 +15,22 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    public EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @GetMapping(value = "/getEmployeeDetails")
     public List<EmployeesDto> getEmployeeDetails(){
         return employeeService.getEmployeeDetails();
     }
 
+    @GetMapping(
+            value = "/getScreensForEmployee",
+            produces = "application/json"
+    )
+    public List<UserScreenDto> getScreensForEmployee(
+            @RequestParam String empCode
+    ) {
+        return employeeService.getScreensForEmployee(empCode);
+    }
 
 
 }

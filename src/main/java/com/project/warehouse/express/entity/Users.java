@@ -22,7 +22,7 @@ public class Users extends BaseEntity {
     @Column(name = "password", nullable = false, length = 20)
     private String password;
 
-    @Column(name = "user_name", length = 50, nullable = false)
+    @Column(name = "user_name", length = 50, nullable = false, unique = true)
     private String username;
 
     @OneToOne(fetch = FetchType.LAZY)

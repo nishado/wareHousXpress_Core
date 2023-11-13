@@ -23,4 +23,5 @@ public class DateTimeUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat(formatPattern.pattern);
         return dateFormat.format(date);
     }
+
 }
