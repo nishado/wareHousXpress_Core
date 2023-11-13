@@ -1,6 +1,7 @@
 package com.project.warehouse.express.entity;
 
 
+import com.project.warehouse.express.util.StringUtils;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,5 +46,10 @@ public class Employees extends BaseEntity {
     @Column(name = "joined_date")
     @Temporal(TemporalType.DATE)
     private Date joinedDate;
+
+    public String getName(){
+        String name = firstName + " " + StringUtils.getStringValue(lastName);
+        return name.trim();
+    }
 
 }

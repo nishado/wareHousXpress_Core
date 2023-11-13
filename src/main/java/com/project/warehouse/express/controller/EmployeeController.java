@@ -1,6 +1,6 @@
 package com.project.warehouse.express.controller;
 
-import com.project.warehouse.express.entity.Employees;
+import com.project.warehouse.express.dto.EmployeesDto;
 import com.project.warehouse.express.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,19 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
+@CrossOrigin
 @RestController
-@RequestMapping ("/apis")
+@RequestMapping ("/employees")
 public class EmployeeController {
 
     @Autowired
     public EmployeeService employeeService;
 
-    @CrossOrigin
     @GetMapping(value = "/getEmployeeDetails")
-    public List<Employees> getEmployeesDetails(){
-        return employeeService.getAllEmployees();
+    public List<EmployeesDto> getEmployeeDetails(){
+        return employeeService.getEmployeeDetails();
     }
 
 
 
 }
+

@@ -5,7 +5,7 @@ import com.project.warehouse.express.entity.Users;
 import com.project.warehouse.express.entity.UserScreens;
 import com.project.warehouse.express.repository.UsersRepository;
 import com.project.warehouse.express.repository.UserScreensRepository;
-import com.project.warehouse.express.util.DtoMapperUtil;
+import com.project.warehouse.express.util.DtoMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,7 @@ public class UserService {
         Users user = usersRepository.findByUsernameAndPassword(username, password);
         if (user != null) {
             List<UserScreens> screens = userScreensRepository.findByUser(user);
-            UserScreenDto dto = DtoMapperUtil.mapUserScreenDto(screens.get(0));
+            UserScreenDto dto = DtoMapperUtils.mapUserScreenDto(screens.get(0));
             dtoList.add(dto);
         }
         return dtoList;

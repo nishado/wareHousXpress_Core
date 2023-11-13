@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
@@ -16,7 +17,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @CrossOrigin
     @GetMapping(
             value = "/authorizeUser",
             produces = "application/json"
