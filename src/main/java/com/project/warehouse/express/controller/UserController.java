@@ -1,10 +1,7 @@
 package com.project.warehouse.express.controller;
 
 import com.project.warehouse.express.dto.UserScreenDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.project.warehouse.express.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -19,7 +16,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
+    @CrossOrigin
     @GetMapping(
             value = "/authorizeUser",
             produces = "application/json"
