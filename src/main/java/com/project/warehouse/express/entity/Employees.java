@@ -32,7 +32,7 @@ public class  Employees extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nationality", referencedColumnName = "id", nullable = true)
-    private Countries countries;
+    private Nationalities nationalities;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = true)

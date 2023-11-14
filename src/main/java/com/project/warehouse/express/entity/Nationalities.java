@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "countries")
-public class Countries extends BaseEntity{
+@Table(name = "nationalities")
+public class Nationalities extends BaseEntity{
 
     @Column(name = "name")
     public String name;

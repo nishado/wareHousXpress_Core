@@ -13,6 +13,6 @@ import lombok.Setter;
 @Table(name = "statuses")
 public class Statuses extends BaseEntity{
 
-    @Column (name = "status",unique = true, nullable = false)
-    public String status;
+    @Column (name = "name",unique = true, nullable = false)
+    public String name;
 }
