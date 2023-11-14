@@ -81,9 +81,15 @@ public class DtoMapperUtils {
         dto.setName(employee.getName());
         dto.setMobile1(employee.getMobile1());
         dto.setMobile2(employee.getMobile2());
-        dto.setDepartment(employee.getDepartment());
-        dto.setStatus(employee.getStatus());
-        dto.setNationality(employee.getNationality());
+        if (employee.getDepartments() != null) {
+            dto.setDepartment(employee.getDepartments().getDeptName());
+        }
+        if (employee.getStatuses() != null) {
+            dto.setStatus(employee.getStatuses().getStatus());
+        }
+        if (employee.getCountries() != null) {
+            dto.setNationality(employee.getCountries().getName());
+        }
         dto.setBirthDt(DateTimeUtils.getDateStringInFormat(employee.getDob(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
         dto.setJoinDt(DateTimeUtils.getDateStringInFormat(employee.getJoinedDate(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
         dto.setEditDt(employee.getEditDate());
