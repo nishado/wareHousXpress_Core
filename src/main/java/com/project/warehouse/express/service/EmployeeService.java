@@ -2,13 +2,10 @@ package com.project.warehouse.express.service;
 
 import com.project.warehouse.express.dto.EmployeesDto;
 import com.project.warehouse.express.dto.UserScreenDto;
-import com.project.warehouse.express.entity.Employees;
-import com.project.warehouse.express.entity.UserScreens;
-import com.project.warehouse.express.entity.Users;
-import com.project.warehouse.express.repository.EmployeeRepository;
-import com.project.warehouse.express.repository.UserScreensRepository;
-import com.project.warehouse.express.repository.UsersRepository;
-import com.project.warehouse.express.util.DtoMapperUtils;
+import com.project.warehouse.express.entity.*;
+import com.project.warehouse.express.repository.*;
+import com.project.warehouse.express.util.mapperUtils.DtoMapperUtils;
+import com.project.warehouse.express.util.mapperUtils.UsersMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +22,12 @@ public class EmployeeService {
     public UsersRepository usersRepository;
     @Autowired
     public UserScreensRepository userScreensRepository;
+    @Autowired
+    public StatusRepository statusRepository;
+    @Autowired
+    public DepartmentsRepository departmentsRepository;
+    @Autowired
+    public NationalitiesRepository nationalitiesRepository;
 
     public List<EmployeesDto> getEmployeeDetails() {
         List<EmployeesDto> dtoList = new ArrayList<>();
@@ -42,11 +45,23 @@ public class EmployeeService {
             Optional<Users> user = usersRepository.findByEmpId(emp);
             user.ifPresent(usr -> {
                 List<UserScreens> screens = userScreensRepository.findByUser(usr);
-                UserScreenDto dto = DtoMapperUtils.mapUserScreenDto(screens.get(0));
+                UserScreenDto dto = UsersMapperUtils.mapUserScreenDto(screens.get(0));
                 dtoList.add(dto);
             });
         });
         return dtoList;
+    }
+
+    public Optional<Statuses> findStatusByName(String statusName) {
+        return statusRepository.findByName(statusName);
+    }
+
+    public Departments findDepartmentByName(String departmentName) {
+        return departmentsRepository.findByName(departmentName);
+    }
+
+    public Nationalities findNationalityByName(String nationalityName) {
+        return nationalitiesRepository.findByName(nationalityName);
     }
 
 }

@@ -11,7 +11,7 @@ import com.project.warehouse.express.repository.EmployeeRepository;
 import com.project.warehouse.express.repository.UserPrivilegesRepository;
 import com.project.warehouse.express.repository.UsersRepository;
 import com.project.warehouse.express.repository.UserScreensRepository;
-import com.project.warehouse.express.util.DtoMapperUtils;
+import com.project.warehouse.express.util.mapperUtils.UsersMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class UserService {
         Users user = usersRepository.findByUsernameAndPassword(username, password);
         if (user != null) {
             List<UserScreens> screens = userScreensRepository.findByUser(user);
-            UserScreenDto dto = DtoMapperUtils.mapUserScreenDto(screens.get(0));
+            UserScreenDto dto = UsersMapperUtils.mapUserScreenDto(screens.get(0));
             dtoList.add(dto);
         }
         return dtoList;
@@ -46,7 +46,7 @@ public class UserService {
         List<UsersDto> dtoList = new ArrayList<>();
         Optional<Users> user = usersRepository.findOneByUsername(username);
         user.ifPresent(usr -> {
-            UsersDto dto = DtoMapperUtils.mapUsersDto(usr, employeeRepository);
+            UsersDto dto = UsersMapperUtils.mapUsersDto(usr, employeeRepository);
             dtoList.add(dto);
         });
         return dtoList;
@@ -58,7 +58,7 @@ public class UserService {
         employee.ifPresent(emp -> {
             Optional<Users> user = usersRepository.findByEmpId(emp);
             user.ifPresent(usr -> {
-                UsersDto dto = DtoMapperUtils.mapUsersDto(usr, employeeRepository);
+                UsersDto dto = UsersMapperUtils.mapUsersDto(usr, employeeRepository);
                 dtoList.add(dto);
             });
         });
@@ -71,7 +71,7 @@ public class UserService {
         user.ifPresent(usr -> {
             Optional<UserPrivileges> privileges = userPrivilegesRepository.findByUserIdAndPrivilegeName(usr, privilegeName);
             privileges.ifPresent(priv -> {
-                UserPrivilegesDto dto = DtoMapperUtils.mapUserPrivilegesDto(priv, employeeRepository);
+                UserPrivilegesDto dto = UsersMapperUtils.mapUserPrivilegesDto(priv, employeeRepository);
                 dtoList.add(dto);
             });
         });
@@ -86,7 +86,7 @@ public class UserService {
             user.ifPresent(usr -> {
                 List<UserPrivileges> userPrivileges = userPrivilegesRepository.findAllByUserId(usr);
                 for (UserPrivileges privilege : userPrivileges) {
-                    UserPrivilegesDto dto = DtoMapperUtils.mapUserPrivilegesDto(privilege, employeeRepository);
+                    UserPrivilegesDto dto = UsersMapperUtils.mapUserPrivilegesDto(privilege, employeeRepository);
                     dtoList.add(dto);
                 }
             });
