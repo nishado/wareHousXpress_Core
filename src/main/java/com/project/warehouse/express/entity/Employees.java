@@ -31,15 +31,15 @@ public class  Employees extends BaseEntity {
     private String mobile2;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "nationality", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "nationality", referencedColumnName = "id")
     private Nationalities nationalities;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = false)
     private Departments departments;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
     private Statuses statuses;
 
     @Column(name = "dob")

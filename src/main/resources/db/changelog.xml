@@ -6,4 +6,7 @@
     <changeSet id="init_superman" author="mubaris">
         <sqlFile path="db/changesets/01_initialize_superman.sql"/>
     </changeSet>
+    <changeSet id="test_data" author="mubaris">
+        <sqlFile path="db/changesets/02_test_data.sql"/>
+    </changeSet>
 </databaseChangeLog>
