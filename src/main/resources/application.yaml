@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/warehouse_express
+    username: postgres
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+          ddl-auto: update
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/warehouse_express
+    user: postgres
+    password: password
+    change-log: classpath:/db/changelog.xml
+
+logging:
+  level:
+    web: DEBUG
