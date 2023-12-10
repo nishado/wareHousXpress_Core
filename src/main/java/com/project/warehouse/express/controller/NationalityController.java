@@ -2,7 +2,6 @@ package com.project.warehouse.express.controller;
 
 
 import com.project.warehouse.express.dto.BasicDto;
-import com.project.warehouse.express.service.DepartmentService;
 import com.project.warehouse.express.service.NationalityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,8 +16,12 @@ import java.util.List;
 @RequestMapping("/nationalities")
 public class NationalityController {
 
+    private final NationalityService nationalityService;
+
     @Autowired
-    NationalityService nationalityService;
+    public NationalityController(NationalityService nationalityService) {
+        this.nationalityService = nationalityService;
+    }
 
     @GetMapping("/getEmployeeNationalities")
     public List<BasicDto> getAllCountries(){

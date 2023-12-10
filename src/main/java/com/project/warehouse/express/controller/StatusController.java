@@ -14,11 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/statuses/getEmployeeStatuses")
 public class StatusController {
+
+    private final StatusService statusService;
+
     @Autowired
-    public StatusService statusService;
+    public StatusController(StatusService statusService) {
+        this.statusService = statusService;
+    }
 
     @GetMapping
     public List<BasicDto> getAllStatuses(){
         return statusService.getAllStatuses();
     }
+
 }

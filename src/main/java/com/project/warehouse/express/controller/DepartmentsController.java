@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping("/departments")
 public class DepartmentsController {
 
+    private final DepartmentService departmentService;
+
     @Autowired
-    DepartmentService departmentService;
+    public DepartmentsController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
 
     @GetMapping("/getDepartments")
     public List<BasicDto> getAllDepartments(){
