@@ -11,7 +11,7 @@ import com.project.warehouse.express.repository.EmployeeRepository;
 import com.project.warehouse.express.repository.UserPrivilegesRepository;
 import com.project.warehouse.express.repository.UsersRepository;
 import com.project.warehouse.express.repository.UserScreensRepository;
-import com.project.warehouse.express.util.mapperUtils.UsersMapperUtils;
+import com.project.warehouse.express.util.mappers.UsersMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +22,23 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    private final UsersRepository usersRepository;
+    private final UserScreensRepository userScreensRepository;
+    private final EmployeeRepository employeeRepository;
+    private final UserPrivilegesRepository userPrivilegesRepository;
+
     @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private UserScreensRepository userScreensRepository;
-    @Autowired
-    private EmployeeRepository employeeRepository;
-    @Autowired
-    private UserPrivilegesRepository userPrivilegesRepository;
+    public UserService(
+            UsersRepository usersRepository,
+            UserScreensRepository userScreensRepository,
+            EmployeeRepository employeeRepository,
+            UserPrivilegesRepository userPrivilegesRepository
+    ) {
+        this.usersRepository = usersRepository;
+        this.userScreensRepository = userScreensRepository;
+        this.employeeRepository = employeeRepository;
+        this.userPrivilegesRepository = userPrivilegesRepository;
+    }
 
     public List<UserScreenDto> authorizeUser(String username, String password) {
         List<UserScreenDto> dtoList = new ArrayList<>();
@@ -46,7 +55,7 @@ public class UserService {
         List<UsersDto> dtoList = new ArrayList<>();
         Optional<Users> user = usersRepository.findOneByUsername(username);
         user.ifPresent(usr -> {
-            UsersDto dto = UsersMapperUtils.mapUsersDto(usr, employeeRepository);
+            UsersDto dto = UsersMapperUtils.mapUsersDto(usr);
             dtoList.add(dto);
         });
         return dtoList;
@@ -58,7 +67,7 @@ public class UserService {
         employee.ifPresent(emp -> {
             Optional<Users> user = usersRepository.findByEmpId(emp);
             user.ifPresent(usr -> {
-                UsersDto dto = UsersMapperUtils.mapUsersDto(usr, employeeRepository);
+                UsersDto dto = UsersMapperUtils.mapUsersDto(usr);
                 dtoList.add(dto);
             });
         });

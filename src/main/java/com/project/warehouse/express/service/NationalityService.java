@@ -3,7 +3,7 @@ package com.project.warehouse.express.service;
 import com.project.warehouse.express.dto.BasicDto;
 import com.project.warehouse.express.entity.Nationalities;
 import com.project.warehouse.express.repository.NationalitiesRepository;
-import com.project.warehouse.express.util.mapperUtils.DtoMapperUtils;
+import com.project.warehouse.express.util.mappers.DtoMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class NationalityService {
 
+    private final NationalitiesRepository nationalitiesRepository;
+
     @Autowired
-    public NationalitiesRepository nationalitiesRepository;
+    public NationalityService(NationalitiesRepository nationalitiesRepository) {
+        this.nationalitiesRepository = nationalitiesRepository;
+    }
 
     public List<BasicDto> getAllNationalities(){
         List<Nationalities> nations = nationalitiesRepository.findAll();

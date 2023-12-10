@@ -1,5 +1,6 @@
 package com.project.warehouse.express;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class WarehouseApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoad() {
+		Assertions.assertNotEquals(1,2);
 	}
 
 }

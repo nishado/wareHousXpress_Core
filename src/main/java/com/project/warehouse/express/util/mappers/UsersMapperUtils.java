@@ -1,26 +1,29 @@
-package com.project.warehouse.express.util.mapperUtils;
+package com.project.warehouse.express.util.mappers;
 
 import com.project.warehouse.express.dto.UserPrivilegesDto;
 import com.project.warehouse.express.dto.UserScreenDto;
 import com.project.warehouse.express.dto.UsersDto;
-import com.project.warehouse.express.entity.Employees;
 import com.project.warehouse.express.entity.UserPrivileges;
 import com.project.warehouse.express.entity.UserScreens;
 import com.project.warehouse.express.entity.Users;
 import com.project.warehouse.express.repository.EmployeeRepository;
-
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 public class UsersMapperUtils {
+
+    private UsersMapperUtils() {
+        throw new IllegalStateException("Utility class instantiated.");
+    }
+
     public static UserScreenDto mapUserScreenDto(UserScreens screen) {
         UserScreenDto dto = new UserScreenDto();
         if (screen.getId() > 0) {
             dto.setId(screen.getId());
         }
         dto.setUserId(screen.getUser().getId());
-        dto.setEditBy(screen.getEditBy());
+        dto.setEditBy(screen.getEditBy().getUsername());
         dto.setEditDate(screen.getEditDate());
-        dto.setCreateBy(screen.getCreateBy());
+        dto.setCreateBy(screen.getCreateBy().getUsername());
         dto.setCreateDate(screen.getCreateDate());
         dto.setDashboard(screen.isDashboard());
         dto.setStock(screen.isStock());
@@ -35,7 +38,7 @@ public class UsersMapperUtils {
         return dto;
     }
 
-    public static UsersDto mapUsersDto(Users user, EmployeeRepository employeeRepository) {
+    public static UsersDto mapUsersDto(Users user) {
         UsersDto dto = new UsersDto();
         if (user.getId() > 0) {
             dto.setId(user.getId());
@@ -45,13 +48,13 @@ public class UsersMapperUtils {
         dto.setName(user.getUsername());
         dto.setEditDate(user.getEditDate());
         dto.setCreateDate(user.getCreateDate());
-        Optional<Employees> createBy = employeeRepository.findById(user.getCreateBy());
-        createBy.ifPresent(crtBy -> dto.setCreateBy(crtBy.getName()));
-        Optional<Employees> editBy = employeeRepository.findById(user.getEditBy());
-        editBy.ifPresent(edtBy -> dto.setEditBy(edtBy.getName()));
+        dto.setCreateBy(user.getUsername());
+        dto.setEditBy(user.getUsername());
         return dto;
     }
 
+
+    @Transactional
     public static UserPrivilegesDto mapUserPrivilegesDto(UserPrivileges privileges, EmployeeRepository employeeRepository) {
         UserPrivilegesDto dto = new UserPrivilegesDto();
         if (privileges.getId() > 0) {
@@ -65,10 +68,8 @@ public class UsersMapperUtils {
         dto.setDeletePrivilege(privileges.isDeletePrivilege());
         dto.setEditDate(privileges.getEditDate());
         dto.setCreateDate(privileges.getCreateDate());
-        Optional<Employees> createBy = employeeRepository.findById(privileges.getCreateBy());
-        createBy.ifPresent(crtBy -> dto.setCreateBy(crtBy.getName()));
-        Optional<Employees> editBy = employeeRepository.findById(privileges.getEditBy());
-        editBy.ifPresent(edtBy -> dto.setEditBy(edtBy.getName()));
+        dto.setCreateBy(privileges.getCreateBy().getUsername());
+        dto.setEditBy(privileges.getEditBy().getUsername());
         return dto;
     }
 

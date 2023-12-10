@@ -3,7 +3,7 @@ package com.project.warehouse.express.service;
 import com.project.warehouse.express.dto.BasicDto;
 import com.project.warehouse.express.entity.Statuses;
 import com.project.warehouse.express.repository.StatusRepository;
-import com.project.warehouse.express.util.mapperUtils.DtoMapperUtils;
+import com.project.warehouse.express.util.mappers.DtoMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +12,12 @@ import java.util.List;
 
 @Service
 public class StatusService {
+    private final StatusRepository statusRepository;
+
     @Autowired
-    public StatusRepository statusRepository;
+    public StatusService(StatusRepository statusRepository) {
+        this.statusRepository = statusRepository;
+    }
 
     public List<BasicDto> getAllStatuses(){
 

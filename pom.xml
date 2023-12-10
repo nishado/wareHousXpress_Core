@@ -14,7 +14,7 @@
 	<name>core</name>
 	<description>Warehouse Project</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

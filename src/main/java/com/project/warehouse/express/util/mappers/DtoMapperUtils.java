@@ -1,8 +1,7 @@
-package com.project.warehouse.express.util.mapperUtils;
+package com.project.warehouse.express.util.mappers;
 
 import com.project.warehouse.express.dto.*;
 import com.project.warehouse.express.entity.*;
-import com.project.warehouse.express.repository.EmployeeRepository;
 import com.project.warehouse.express.service.EmployeeService;
 import com.project.warehouse.express.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,14 @@ import java.text.ParseException;
 import java.util.Optional;
 
 public class DtoMapperUtils {
+    private final EmployeeService employeeService;
+
     @Autowired
-    public EmployeeService employeeService;
+    public DtoMapperUtils(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
-
-    public static EmployeesDto mapEmployeesDto(Employees employee, EmployeeRepository employeeRepository) {
+    public static EmployeesDto mapEmployeesDto(Employees employee) {
         EmployeesDto dto = new EmployeesDto();
         dto.setId(employee.getId());
         dto.setEmpCode(employee.getEmpCode());
@@ -33,13 +35,10 @@ public class DtoMapperUtils {
         }
         dto.setBirthDt(DateTimeUtils.getDateStringInFormat(employee.getDob(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
         dto.setJoinDt(DateTimeUtils.getDateStringInFormat(employee.getJoinedDate(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
-        dto.setEditDt(employee.getEditDate());
-        dto.setCreateDt(employee.getCreateDate());
-
-        Optional<Employees> createBy = employeeRepository.findById(employee.getCreateBy());
-        createBy.ifPresent(crtBy -> dto.setCreateBy(crtBy.getName()));
-        Optional<Employees> editBy = employeeRepository.findById(employee.getEditBy());
-        editBy.ifPresent(edtBy -> dto.setEditBy(edtBy.getName()));
+        dto.setEditDate(employee.getEditDate());
+        dto.setCreateDate(employee.getCreateDate());
+        dto.setEditBy(employee.getEditBy().getUsername());
+        dto.setCreateBy(employee.getCreateBy().getUsername());
         return dto;
     }
 
@@ -54,10 +53,8 @@ public class DtoMapperUtils {
         status.ifPresent(emp::setStatuses);
         emp.setDepartments(employeeService.findDepartmentByName(employeesDto.getDepartment()));
         emp.setNationalities(employeeService.findNationalityByName(employeesDto.getNationality()));
-        emp.setEditDate(employeesDto.getEditDt());
-        emp.setCreateDate(employeesDto.getCreateDt());
-//        emp.setDob(DateTimeUtils.getDateFromString(
-//                employeesDto.getBirthDt(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
+        emp.setEditDate(employeesDto.getEditDate());
+        emp.setCreateDate(employeesDto.getCreateDate());
         emp.setDob(DateTimeUtils.getDateFromDateTimeString(employeesDto.getBirthDt()));
         emp.setJoinedDate(DateTimeUtils.getDateFromString(
                 employeesDto.getJoinDt(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));

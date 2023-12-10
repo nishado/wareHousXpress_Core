@@ -17,15 +17,17 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "create_by", nullable = false)
-    private Long createBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "create_by", nullable = false)
+    private Users createBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date", nullable = false)
     private Date createDate;
 
-    @Column(name = "edit_by", nullable = false)
-    private Long editBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "edit_by", nullable = false)
+    private Users editBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "edit_date", nullable = false)

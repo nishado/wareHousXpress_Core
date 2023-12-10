@@ -15,6 +15,6 @@ public class ProductUnits extends BaseEntity {
     private String code;
 
     @Column(name = "description", nullable = false)
-    private String unit;
+    private String description;
 
 }

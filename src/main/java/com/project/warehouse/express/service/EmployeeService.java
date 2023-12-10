@@ -4,8 +4,8 @@ import com.project.warehouse.express.dto.EmployeesDto;
 import com.project.warehouse.express.dto.UserScreenDto;
 import com.project.warehouse.express.entity.*;
 import com.project.warehouse.express.repository.*;
-import com.project.warehouse.express.util.mapperUtils.DtoMapperUtils;
-import com.project.warehouse.express.util.mapperUtils.UsersMapperUtils;
+import com.project.warehouse.express.util.mappers.DtoMapperUtils;
+import com.project.warehouse.express.util.mappers.UsersMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +16,35 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
+    private final EmployeeRepository employeeRepository;
+    private final UsersRepository usersRepository;
+    private final UserScreensRepository userScreensRepository;
+    private final StatusRepository statusRepository;
+    private final DepartmentsRepository departmentsRepository;
+    private final NationalitiesRepository nationalitiesRepository;
+
     @Autowired
-    public EmployeeRepository employeeRepository;
-    @Autowired
-    public UsersRepository usersRepository;
-    @Autowired
-    public UserScreensRepository userScreensRepository;
-    @Autowired
-    public StatusRepository statusRepository;
-    @Autowired
-    public DepartmentsRepository departmentsRepository;
-    @Autowired
-    public NationalitiesRepository nationalitiesRepository;
+    public EmployeeService(
+            EmployeeRepository employeeRepository,
+            UsersRepository usersRepository,
+            UserScreensRepository userScreensRepository,
+            StatusRepository statusRepository,
+            DepartmentsRepository departmentsRepository,
+            NationalitiesRepository nationalitiesRepository
+    ) {
+        this.employeeRepository = employeeRepository;
+        this.usersRepository = usersRepository;
+        this.userScreensRepository = userScreensRepository;
+        this.statusRepository = statusRepository;
+        this.departmentsRepository = departmentsRepository;
+        this.nationalitiesRepository = nationalitiesRepository;
+    }
 
     public List<EmployeesDto> getEmployeeDetails() {
         List<EmployeesDto> dtoList = new ArrayList<>();
         List<Employees> employees = employeeRepository.findAll();
         for(Employees emp : employees) {
-            dtoList.add(DtoMapperUtils.mapEmployeesDto(emp, employeeRepository));
+            dtoList.add(DtoMapperUtils.mapEmployeesDto(emp));
         }
         return dtoList;
     }

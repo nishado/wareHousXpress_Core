@@ -1,15 +1,14 @@
 package com.project.warehouse.express.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-public class EmployeesDto {
+public class StockDetailsDto {
+
     private Long id;
     private String empCode;
     private String name;
@@ -26,4 +25,3 @@ public class EmployeesDto {
     private Date createDate;
 
 }
-
