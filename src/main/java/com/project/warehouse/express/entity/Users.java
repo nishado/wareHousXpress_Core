@@ -1,18 +1,13 @@
 package com.project.warehouse.express.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
 @Entity
 @Table(name = "users")
 public class Users {
@@ -44,9 +39,8 @@ public class Users {
     @Column(name = "user_name", length = 50, nullable = false, unique = true)
     private String username;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_id", referencedColumnName = "id", nullable = false)
-    private Employees empId;
+    @Column(name = "emp_id", unique = true, nullable = false)
+    private Long empId;
 
 }
 

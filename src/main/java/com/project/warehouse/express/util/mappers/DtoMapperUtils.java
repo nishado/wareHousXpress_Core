@@ -2,19 +2,12 @@ package com.project.warehouse.express.util.mappers;
 
 import com.project.warehouse.express.dto.*;
 import com.project.warehouse.express.entity.*;
-import com.project.warehouse.express.service.EmployeeService;
 import com.project.warehouse.express.util.DateTimeUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.text.ParseException;
-import java.util.Optional;
 
 public class DtoMapperUtils {
-    private final EmployeeService employeeService;
 
-    @Autowired
-    public DtoMapperUtils(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    private DtoMapperUtils() {
+        throw new IllegalStateException("Util class initialized.");
     }
 
     public static EmployeesDto mapEmployeesDto(Employees employee) {
@@ -40,26 +33,6 @@ public class DtoMapperUtils {
         dto.setEditBy(employee.getEditBy().getUsername());
         dto.setCreateBy(employee.getCreateBy().getUsername());
         return dto;
-    }
-
-    public Employees mapToEmployees(EmployeesDto employeesDto) throws ParseException {
-
-        Employees emp = new Employees();
-        emp.setEmpCode(employeesDto.getEmpCode());
-        emp.setMobile1(employeesDto.getMobile1());
-        emp.setMobile2(employeesDto.getMobile2());
-
-        Optional<Statuses> status = employeeService.findStatusByName(employeesDto.getStatus());
-        status.ifPresent(emp::setStatuses);
-        emp.setDepartments(employeeService.findDepartmentByName(employeesDto.getDepartment()));
-        emp.setNationalities(employeeService.findNationalityByName(employeesDto.getNationality()));
-        emp.setEditDate(employeesDto.getEditDate());
-        emp.setCreateDate(employeesDto.getCreateDate());
-        emp.setDob(DateTimeUtils.getDateFromDateTimeString(employeesDto.getBirthDt()));
-        emp.setJoinedDate(DateTimeUtils.getDateFromString(
-                employeesDto.getJoinDt(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
-
-        return emp;
     }
 
     public static BasicDto mapDeptDto(Departments departments) {

@@ -6,7 +6,6 @@ import com.project.warehouse.express.dto.UsersDto;
 import com.project.warehouse.express.entity.UserPrivileges;
 import com.project.warehouse.express.entity.UserScreens;
 import com.project.warehouse.express.entity.Users;
-import com.project.warehouse.express.repository.EmployeeRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 public class UsersMapperUtils {
@@ -38,13 +37,13 @@ public class UsersMapperUtils {
         return dto;
     }
 
-    public static UsersDto mapUsersDto(Users user) {
+    public static UsersDto mapUsersDto(Users user, String empCode) {
         UsersDto dto = new UsersDto();
         if (user.getId() > 0) {
             dto.setId(user.getId());
         }
         dto.setUserId(user.getUserCode());
-        dto.setEmpCode(user.getEmpId().getEmpCode());
+        dto.setEmpCode(empCode);
         dto.setName(user.getUsername());
         dto.setEditDate(user.getEditDate());
         dto.setCreateDate(user.getCreateDate());
@@ -55,7 +54,7 @@ public class UsersMapperUtils {
 
 
     @Transactional
-    public static UserPrivilegesDto mapUserPrivilegesDto(UserPrivileges privileges, EmployeeRepository employeeRepository) {
+    public static UserPrivilegesDto mapUserPrivilegesDto(UserPrivileges privileges) {
         UserPrivilegesDto dto = new UserPrivilegesDto();
         if (privileges.getId() > 0) {
             dto.setId(privileges.getId());
