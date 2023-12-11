@@ -53,7 +53,7 @@ public class EmployeeService {
         List<UserScreenDto> dtoList = new ArrayList<>();
         Optional<Employees> employee = employeeRepository.findByEmpCode(empCode);
         employee.ifPresent(emp -> {
-            Optional<Users> user = usersRepository.findByEmpId(emp);
+            Optional<Users> user = usersRepository.findByEmpId(emp.getId());
             user.ifPresent(usr -> {
                 List<UserScreens> screens = userScreensRepository.findByUser(usr);
                 UserScreenDto dto = UsersMapperUtils.mapUserScreenDto(screens.get(0));

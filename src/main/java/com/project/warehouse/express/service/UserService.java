@@ -66,7 +66,7 @@ public class UserService {
         List<UsersDto> dtoList = new ArrayList<>();
         Optional<Employees> employee = employeeRepository.findByEmpCode(empCode);
         employee.ifPresent(emp -> {
-            Optional<Users> user = usersRepository.findByEmpId(emp);
+            Optional<Users> user = usersRepository.findByEmpId(emp.getId());
             user.ifPresent(usr -> {
                 UsersDto dto = UsersMapperUtils.mapUsersDto(usr, empCode);
                 dtoList.add(dto);
@@ -92,7 +92,7 @@ public class UserService {
         List<UserPrivilegesDto> dtoList = new ArrayList<>();
         Optional<Employees> employee = employeeRepository.findByEmpCode(empCode);
         employee.ifPresent(emp -> {
-            Optional<Users> user = usersRepository.findByEmpId(emp);
+            Optional<Users> user = usersRepository.findByEmpId(emp.getId());
             user.ifPresent(usr -> {
                 List<UserPrivileges> userPrivileges = userPrivilegesRepository.findAllByUserId(usr);
                 for (UserPrivileges privilege : userPrivileges) {
