@@ -10,3 +10,5 @@ INSERT INTO product_batches(id, create_by, create_date, edit_by, edit_date, batc
 	VALUES (1, 1, now(), 1, now(), 'test_batch', '001', 1, 1, 1, 100.0, 500.0, 5.0, 10.0);
 INSERT INTO stock_total(id, create_by, create_date, edit_by, edit_date, batch_id, initial_quantity, current_quantity)
 	VALUES (1, 1, now(), 1, now(), 1, 100.0, 100.0);
+INSERT INTO privileges(id, create_by, create_date, edit_by, edit_date,name)
+    VALUES (1, 1, now(), 1, now(),'test_privileges1');

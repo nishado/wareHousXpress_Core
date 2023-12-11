@@ -44,6 +44,15 @@ public class DtoMapperUtils {
         return dto;
     }
 
+    public static BasicDto mapPrivDto(Privileges privileges) {
+
+        BasicDto dto = new BasicDto();
+        dto.setId(privileges.getId());
+        dto.setName(privileges.getName());
+
+        return dto;
+    }
+
     public static BasicDto mapNationalityDto(Nationalities nationalities) {
 
         BasicDto dto = new BasicDto();
