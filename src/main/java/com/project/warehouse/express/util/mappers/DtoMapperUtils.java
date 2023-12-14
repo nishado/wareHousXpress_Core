@@ -44,11 +44,16 @@ public class DtoMapperUtils {
         return dto;
     }
 
-    public static BasicDto mapPrivDto(Privileges privileges) {
+    public static UserPrivilegesDto mapPrivilegeDto(Privileges privileges) {
 
-        BasicDto dto = new BasicDto();
+        UserPrivilegesDto dto = new UserPrivilegesDto();
         dto.setId(privileges.getId());
-        dto.setName(privileges.getName());
+        dto.setPrivilegeName(privileges.getName());
+        dto.setAddPrivilege(privileges.addPrivilege);
+        dto.setViewPrivilege(privileges.viewPrivilege);
+        dto.setEditPrivilege(privileges.editPrivilege);
+        dto.setAddPrivilege(privileges.addPrivilege);
+        dto.setDeletePrivilege(privileges.deletePrivilege);
 
         return dto;
     }

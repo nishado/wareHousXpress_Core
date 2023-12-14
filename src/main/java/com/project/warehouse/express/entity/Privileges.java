@@ -15,4 +15,15 @@ public class Privileges extends BaseEntity{
     @Column(name = "name",unique = true, nullable = false)
     public String name;
 
+    @Column(name = "view_privilege",nullable = false )
+    public boolean viewPrivilege;
+
+    @Column(name = "edit_privilege",nullable = false )
+    public boolean editPrivilege;
+
+    @Column(name = "add_privilege",nullable = false )
+    public boolean addPrivilege;
+
+    @Column(name = "delete_privilege",nullable = false )
+    public boolean deletePrivilege;
 }

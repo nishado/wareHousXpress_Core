@@ -1,6 +1,7 @@
 package com.project.warehouse.express.controller;
 
 import com.project.warehouse.express.dto.BasicDto;
+import com.project.warehouse.express.dto.UserPrivilegesDto;
 import com.project.warehouse.express.service.PrivilegesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class PrivilegesController {
     public PrivilegesService privilegesService;
 
     @GetMapping("/getPrivileges")
-    public List<BasicDto> findAllPrivileges(){
+    public List<UserPrivilegesDto> findAllPrivileges(){
         return privilegesService.getAllPrivileges();
     }
 }

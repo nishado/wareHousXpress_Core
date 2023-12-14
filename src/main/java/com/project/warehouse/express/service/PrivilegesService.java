@@ -1,7 +1,7 @@
 package com.project.warehouse.express.service;
 
 import com.project.warehouse.express.dto.BasicDto;
-import com.project.warehouse.express.entity.BaseEntity;
+import com.project.warehouse.express.dto.UserPrivilegesDto;
 import com.project.warehouse.express.entity.Privileges;
 import com.project.warehouse.express.repository.PrivilegesRepository;
 import com.project.warehouse.express.util.mappers.DtoMapperUtils;
@@ -16,11 +16,11 @@ public class PrivilegesService {
     @Autowired
     public PrivilegesRepository privilegesRepository;
 
-    public List<BasicDto> getAllPrivileges(){
-        List<BasicDto> dtoList = new ArrayList<>();
+    public List<UserPrivilegesDto> getAllPrivileges(){
+        List<UserPrivilegesDto> dtoList = new ArrayList<>();
         List<Privileges> privs = privilegesRepository.findAll();
         for(Privileges p : privs){
-            dtoList.add(DtoMapperUtils.mapPrivDto(p));
+            dtoList.add(DtoMapperUtils.mapPrivilegeDto(p));
         }
         return dtoList;
     }
