@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/warehouse_express
-    username: postgres
-    password: password
+    username: root
+    password: root
   jpa:
     properties:
       hibernate:
@@ -11,8 +11,8 @@ spring:
       ddl-auto: update
   liquibase:
     url: jdbc:postgresql://localhost:5432/warehouse_express
-    user: postgres
-    password: password
+    user: root
+    password: root
     change-log: classpath:/db/changelog.xml
 
 logging:
