@@ -24,6 +24,5 @@ public class EmployeesDto {
     private Date editDate;
     private String createBy;
     private Date createDate;
-
 }
 

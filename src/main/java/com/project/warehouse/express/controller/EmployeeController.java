@@ -36,6 +36,16 @@ public class EmployeeController {
         return employeeService.getScreensForEmployee(empCode);
     }
 
+    @PostMapping (
+            value = "/saveEmployeeDetails",
+            consumes = "application/json"
+    )
+    public void saveOrUpdateEmployees(@RequestBody EmployeesDto emp){
+        boolean isNew = emp.getId() != null && emp.getId() > 0;
+        employeeService.createOrUpdateEmployee(emp,!isNew);
+
+    }
+
 
 }
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StatusService {
@@ -28,5 +29,9 @@ public class StatusService {
         }
 
         return dtoList;
+    }
+
+    public Statuses findStatusByName(String name){
+        return statusRepository.findByName(name).orElseThrow(()->new RuntimeException("status not found"));
     }
 }

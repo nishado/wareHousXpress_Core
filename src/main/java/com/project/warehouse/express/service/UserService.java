@@ -104,4 +104,8 @@ public class UserService {
         return dtoList;
     }
 
+    public Users getUserByName(String name){
+        return usersRepository.findOneByUsername(name).orElseThrow(()->new RuntimeException("user not found"));
+    }
+
 }

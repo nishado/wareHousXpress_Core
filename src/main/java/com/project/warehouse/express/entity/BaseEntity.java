@@ -30,7 +30,7 @@ public abstract class BaseEntity {
     private Users editBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "edit_date", nullable = false)
+    @Column(name = "edit_date", nullable = true)
     private Date editDate;
 
 }
