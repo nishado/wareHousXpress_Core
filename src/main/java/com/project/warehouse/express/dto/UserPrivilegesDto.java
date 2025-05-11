@@ -7,16 +7,18 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class UsersDto {
+public class UserPrivilegesDto {
 
     private long id;
     private int userId;
-    private String password;
-    private String name;
+    private String privilegeName;
+    private Boolean viewPrivilege;
+    private Boolean addPrivilege;
+    private Boolean editPrivilege;
+    private Boolean deletePrivilege;
     private String editBy;
     private Date editDate;
     private String createBy;
     private Date createDate;
-    private String empCode;
 
 }

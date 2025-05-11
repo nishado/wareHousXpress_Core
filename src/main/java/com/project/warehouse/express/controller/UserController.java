@@ -1,16 +1,16 @@
 package com.project.warehouse.express.controller;
 
+import com.project.warehouse.express.dto.UserPrivilegesDto;
 import com.project.warehouse.express.dto.UserScreenDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.project.warehouse.express.dto.UsersDto;
+import org.springframework.web.bind.annotation.*;
 import com.project.warehouse.express.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
@@ -30,4 +30,46 @@ public class UserController {
     ) {
         return userService.authorizeUser(username, password);
     }
+
+    @GetMapping(
+            value = "/getUserDetailsWithUsername",
+            produces = "application/json"
+    )
+    public List<UsersDto> getUserDetailsWithUsername(
+            @RequestParam String username
+    ) {
+        return userService.getUserDetailsWithUsername(username);
+    }
+
+    @GetMapping(
+            value = "/getUserDetailsWithEmpCode",
+            produces = "application/json"
+    )
+    public List<UsersDto> getUserDetailsWithEmpCode(
+            @RequestParam String empCode
+    ) {
+        return userService.getUserDetailsWithEmpCode(empCode);
+    }
+
+    @GetMapping(
+            value = "/getAPrivilegeForUser",
+            produces = "application/json"
+    )
+    public List<UserPrivilegesDto> getAPrivilegeForUser(
+            @RequestParam String userName,
+            @RequestParam String privilegeName
+    ) {
+        return userService.getAPrivilegeForUser(userName, privilegeName);
+    }
+
+    @GetMapping(
+            value = "/getAllPrivilegesForUser",
+            produces = "application/json"
+    )
+    public List<UserPrivilegesDto> getAllPrivilegesForUser(
+            @RequestParam String empCode
+    ) {
+        return userService.getAllPrivilegesForUser(empCode);
+    }
+
 }

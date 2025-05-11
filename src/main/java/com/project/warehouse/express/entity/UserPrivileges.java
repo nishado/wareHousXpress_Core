@@ -15,6 +15,10 @@ public class UserPrivileges extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users userId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "privilege_id", referencedColumnName = "id")
+    private Privileges privilegeId;
+
     @Column(name = "privilege_name", length = 100)
     private String privilegeName;
 

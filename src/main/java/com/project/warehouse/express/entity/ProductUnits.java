@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name = "products")
-public class Products extends BaseEntity {
-
-    @Column(name = "name", nullable = false, unique = true, length = 120)
-    private String name;
+@Table(name = "product_units")
+public class ProductUnits extends BaseEntity {
 
     @Column(name = "code", unique = true, nullable = false, length = 30)
     private String code;
+
+    @Column(name = "description", nullable = false)
+    private String description;
 
 }

@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserScreensRepository extends JpaRepository<UserScreens, Integer> {
+
     List<UserScreens> findByUser(Users user);
+
 }
