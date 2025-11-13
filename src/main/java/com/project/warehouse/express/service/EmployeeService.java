@@ -41,6 +41,15 @@ public class EmployeeService {
         return dtoList;
     }
 
+    public List<EmployeesDto> getTopStudents() {
+        List<EmployeesDto> dtoList = new ArrayList<>();
+        List<Employees> employees = employeeRepository.getTopStudents("maths",5);
+        for(Employees emp : employees) {
+            dtoList.add(EmployeeDtoMapperUtils.mapEmployeesDto(emp));
+        }
+        return dtoList;
+    }
+
     public void createOrUpdateEmployee(EmployeesDto dto, boolean isNew) {
         if (isNew){
             Employees emp = employeeDtoMapperUtils.mapDtoToEmployees(dto,new Employees());

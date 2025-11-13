@@ -4,7 +4,6 @@ import com.project.warehouse.express.dto.BasicDto;
 import com.project.warehouse.express.entity.Departments;
 import com.project.warehouse.express.repository.DepartmentsRepository;
 import com.project.warehouse.express.util.mappers.DtoMapperUtils;
-import org.apache.commons.text.translate.NumericEntityUnescaper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +31,7 @@ public class DepartmentService {
         return dtoList;
     }
     public Departments findDepartmentByName(String name){
-        Departments d= departmentsRepository.findByName(name).orElseThrow(()->new RuntimeException("Dept not found"));
-        return d;
+        return departmentsRepository.findByName(name).orElseThrow(()->new RuntimeException("Dept not found"));
     }
 
 }

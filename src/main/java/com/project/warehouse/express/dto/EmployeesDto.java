@@ -15,9 +15,10 @@ public class EmployeesDto {
     private String name;
     private String mobile1;
     private String mobile2;
+    private Long depId;
     private String department;
-    private String status;
-    private String nationality;
+    private Long status;
+    private Long natianalityId;
     private String birthDt;
     private String joinDt;
     private String editBy;

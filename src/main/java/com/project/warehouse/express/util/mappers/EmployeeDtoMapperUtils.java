@@ -5,8 +5,11 @@ import com.project.warehouse.express.entity.Departments;
 import com.project.warehouse.express.entity.Employees;
 import com.project.warehouse.express.entity.Statuses;
 import com.project.warehouse.express.entity.Users;
+import com.project.warehouse.express.repository.DepartmentsRepository;
+import com.project.warehouse.express.repository.NationalitiesRepository;
+import com.project.warehouse.express.repository.StatusRepository;
+import com.project.warehouse.express.repository.UsersRepository;
 import com.project.warehouse.express.service.DepartmentService;
-import com.project.warehouse.express.service.NationalityService;
 import com.project.warehouse.express.service.StatusService;
 import com.project.warehouse.express.service.UserService;
 import com.project.warehouse.express.util.DateTimeUtils;
@@ -20,19 +23,29 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import static org.apache.commons.lang3.time.DateUtils.parseDate;
+
 
 @Component
 public class EmployeeDtoMapperUtils {
 
     @Autowired
     public DepartmentService departmentService;
+
+    @Autowired
+    public DepartmentsRepository departmentsRepository;
+
+    @Autowired
+    public StatusRepository statusRepository;
+
     @Autowired
     public StatusService statusService;
     @Autowired
-    public NationalityService nationalityService;
+    public NationalitiesRepository nationalitiesRepository;
     @Autowired
     public UserService userService;
+
+    @Autowired
+    public UsersRepository usersRepository;
     public static EmployeesDto mapEmployeesDto(Employees employee) {
         EmployeesDto dto = new EmployeesDto();
         dto.setId(employee.getId());
@@ -44,10 +57,10 @@ public class EmployeeDtoMapperUtils {
             dto.setDepartment(employee.getDepartments().getName());
         }
         if (employee.getStatuses() != null) {
-            dto.setStatus(employee.getStatuses().getName());
+            dto.setStatus(employee.getStatuses().getId());
         }
         if (employee.getNationalities() != null) {
-            dto.setNationality(employee.getNationalities().getName());
+            dto.setNatianalityId(employee.getNationalities().getId());
         }
         dto.setBirthDt(DateTimeUtils.getDateStringInFormat(employee.getDob(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
         dto.setJoinDt(DateTimeUtils.getDateStringInFormat(employee.getJoinedDate(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
@@ -63,9 +76,9 @@ public class EmployeeDtoMapperUtils {
         }
         emp.setMobile1(dto.getMobile1());
         emp.setMobile2(dto.getMobile2());
-        emp.setDepartments(departmentService.findDepartmentByName(dto.getDepartment()));
-        emp.setStatuses(statusService.findStatusByName(dto.getStatus()));
-        emp.setNationalities(nationalityService.findByName(dto.getNationality()));
+        emp.setDepartments(departmentsRepository.findById(dto.getDepId()).orElse(null));
+        emp.setStatuses(statusRepository.findById(dto.getStatus()).orElse(null));
+        emp.setNationalities(nationalitiesRepository.findById(dto.getNatianalityId()).orElse(null));
         try {
             emp.setDob(Date.from(Instant.now()));
         }
@@ -78,9 +91,9 @@ public class EmployeeDtoMapperUtils {
         catch (Exception p){
             p.getMessage();
         }
-        emp.setEditBy(userService.getUserByName(dto.getEditBy()));
+        emp.setEditBy(usersRepository.findById(Integer.valueOf(dto.getEditBy())).orElse(null));
         emp.setEditDate(dto.getEditDate());
-        emp.setCreateBy(userService.getUserByName(dto.getEditBy()));
+        emp.setCreateBy(usersRepository.findById(Integer.valueOf(dto.getEditBy())).orElse(null));
         return emp;
     }
 
