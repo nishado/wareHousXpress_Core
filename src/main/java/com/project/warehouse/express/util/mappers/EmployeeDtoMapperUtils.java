@@ -6,6 +6,7 @@ import com.project.warehouse.express.entity.Employees;
 import com.project.warehouse.express.entity.Statuses;
 import com.project.warehouse.express.entity.Users;
 import com.project.warehouse.express.repository.DepartmentsRepository;
+import com.project.warehouse.express.repository.EmployeeRepository;
 import com.project.warehouse.express.repository.NationalitiesRepository;
 import com.project.warehouse.express.repository.StatusRepository;
 import com.project.warehouse.express.repository.UsersRepository;
@@ -22,6 +23,7 @@ import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 
 
@@ -46,6 +48,8 @@ public class EmployeeDtoMapperUtils {
 
     @Autowired
     public UsersRepository usersRepository;
+    @Autowired
+    public EmployeeRepository employeeRepository;
     public static EmployeesDto mapEmployeesDto(Employees employee) {
         EmployeesDto dto = new EmployeesDto();
         dto.setId(employee.getId());
@@ -67,6 +71,14 @@ public class EmployeeDtoMapperUtils {
         return dto;
     }
     public Employees mapDtoToEmployees(EmployeesDto dto,Employees emp){
+        // Check for duplicate empCode
+        if (dto.getEmpCode() != null) {
+            // Only check if creating new or changing empCode
+            Optional<Employees> existingEmp = employeeRepository.findByEmpCode(dto.getEmpCode());
+            if (existingEmp.isPresent() && (emp.getId() == null || !existingEmp.get().getId().equals(emp.getId()))) {
+                throw new DuplicateEmpCodeException("Employee code already exists: " + dto.getEmpCode());
+            }
+        }
         emp.setEmpCode(dto.getEmpCode());
         // Split name into first and last
         String[] nameParts = dto.getName().split(" ");
