@@ -92,11 +92,11 @@ public class EmployeeDtoMapperUtils {
         emp.setStatuses(statusRepository.findById(dto.getStatus()).orElse(null));
         emp.setNationalities(nationalitiesRepository.findById(dto.getNatianalityId()).orElse(null));
         try {
-            emp.setDob(Date.from(Instant.now()));
+            emp.setDob(DateTimeUtils.getDateFromString(dto.getBirthDt(), DateTimeUtils.DateFormatPattern.YEAR_MONTH_DAY));
+        } catch (ParseException e) {
+            emp.setDob(null); // or handle/log as needed
         }
-        catch (Exception p){
-            p.getMessage();
-        }
+
         try {
             emp.setJoinedDate(Date.from(Instant.now()));
         }

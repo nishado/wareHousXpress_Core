@@ -4,6 +4,7 @@ import com.project.warehouse.express.dto.EmployeesDto;
 import com.project.warehouse.express.dto.UserScreenDto;
 import com.project.warehouse.express.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,10 +46,11 @@ public class EmployeeController {
             value = "/saveEmployeeDetails",
             consumes = "application/json"
     )
-    public void saveOrUpdateEmployees(@RequestBody EmployeesDto emp){
+    public ResponseEntity<String> saveOrUpdateEmployees(@RequestBody EmployeesDto emp){
         boolean isExisting = emp.getId() != null && emp.getId() > 0;
         employeeService.createOrUpdateEmployee(emp,!isExisting);
-
+        String message = emp.getName() + " is added successfully with employee code: " + emp.getEmpCode();
+        return ResponseEntity.ok(message);
     }
 
 
